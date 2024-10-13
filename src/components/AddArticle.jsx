@@ -1,7 +1,8 @@
 import { addDoc, collection, Timestamp } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { useState, toast } from 'react'
+import { useState } from 'react'
 import { db, storage } from '../firebaseConfig';
+import { toast } from 'react-toastify';
 
 const AddArticle = () => {
     const [progress, setProgress] = useState(0);
@@ -47,8 +48,10 @@ const AddArticle = () => {
                     title: "",
                     image: "",
                     topic: "",
-                    description: ""
+                    description: "",
+
                 });
+                setProgress(0);
 
                 getDownloadURL(uploadImage.snapshot.ref).then((url) => {
                     const articleRef = collection(db, "articles");
@@ -127,7 +130,7 @@ const AddArticle = () => {
                     />
                     {progress === 0 ? null : (
                         <div
-                            className='my-2 text-white text-center'
+                            className='my-2 text-white text-center w-full'
                             style={{
                                 width: `${progress}%`,
                                 backgroundColor: `rgba(0, 0, 255, ${progress / 100})` // Blue color with increasing opacity
