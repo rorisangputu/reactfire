@@ -17,7 +17,7 @@ const Articles = () => {
         })
     }, []);
     return (
-        <div>
+        <div className='w-full'>
             {articles.length === 0
                 ?
                 (
@@ -27,7 +27,7 @@ const Articles = () => {
                 )
                 :
                 (
-                    <div className='py-4 grid grid-cols-1 '>
+                    <div className='my-3 grid grid-cols-1 gap-5 '>
                         {articles.map((article) => (
                             <div key={article.id} className='border h-72 flex flex-col justify-between items-start'>
                                 <div className='h-[200px] w-full'>
